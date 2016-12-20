@@ -7,7 +7,7 @@ const text2 = "Lorem dolor sit amet.";
 
 function createPatch(lastDoc, currDoc) {
     var m0 = process.memoryUsage().heapUsed;
-    var t0 = process.hrtime()[1];
+    var t0 = Date.now();
 
     var diff = dmp.diff_main(lastDoc, currDoc, false);
     dmp.diff_cleanupSemantic(diff);
@@ -16,8 +16,8 @@ function createPatch(lastDoc, currDoc) {
 
     var result = dmp.patch_toText(patch);
 
-    var t1 = process.hrtime()[1];
-    console.log((t1 - t0) + ' ns');
+    var t1 = Date.now();
+    console.log((t1 - t0) + ' ms');
     var m1 = process.memoryUsage().heapUsed;
     console.log((m1 - m0) / 1024 + ' KB');
 
